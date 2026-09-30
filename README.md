@@ -20,28 +20,51 @@ RAT via Discord
 ## commands
 
 !help
+
 !ls / !dir
+
 !cd <path>
+
 !back
+
 !pwd
+
 !exe <command>
+
 !run <file>
+
 !download <file>
+
 !delete / !del / !delet <name>
+
 !mkdir <name>
+
 !sysinfo
+
 !ip
+
 !processes
+
 !kill <pid>
+
 !clipboard
+
 !msg <text>
+
 !screenshot
+
 !shutdown
+
 !restart
+
 !lock
+
 !sleep
+
 !autostart on
+
 !autostart off
+
 !autostart status
 
 ## Requirements
