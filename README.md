@@ -33,3 +33,5 @@ RAT via Discord
 ```python
 TOKEN = "Token"
 OWNER_ID = Owner
+
+CommandDescription!helpShow all commands!ls / !dirList files and folders!cd <path>Change directory!backGo up one directory!pwdShow current directory!exe <command>Run any shell command!run <file>Start a program!download <file>Send a file to Discord!delete / !del / !delet <name>Delete file or folder!mkdir <name>Create a folder!sysinfoCPU, RAM, disk and system info!ipLocal and public IP!processesList running processes!kill <pid>Kill a process!clipboardRead clipboard text!msg <text>Show a message box on the PC!screenshotTake and send a screenshot!shutdownShutdown the PC!restartRestart the PC!lockLock the workstation!sleepPut the PC to sleep!autostart onEnable start with Windows!autostart offDisable start with Windows!autostart statusCheck autostart status
