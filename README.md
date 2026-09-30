@@ -17,23 +17,6 @@ RAT via Discord
 - Owner-only access (only your Discord account can use the commands)
 - Automatic dependency installation
 
-## Requirements
-
-- Windows 10 / 11
-- Python 3.10 or higher
-- A Discord Bot Token
-- Your Discord User ID
-
-## Installation
-
-1. Clone or download this repository.
-
-2. Open `remote_bot.py` and set these two values:
-
-```python
-TOKEN = "Token"
-OWNER_ID = Owner
-
 ## commands
 
 !help
@@ -60,3 +43,20 @@ OWNER_ID = Owner
 !autostart on
 !autostart off
 !autostart status
+
+## Requirements
+
+- Windows 10 / 11
+- Python 3.10 or higher
+- A Discord Bot Token
+- Your Discord User ID
+
+## Installation
+
+1. Clone or download this repository.
+
+2. Open `remote_bot.py` and set these two values:
+
+```python
+TOKEN = "Token"
+OWNER_ID = Owner
