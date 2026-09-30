@@ -363,13 +363,30 @@ async def processes(ctx):
         for p in psutil.process_iter(["pid", "name", "cpu_percent", "memory_percent"]):
             try:
                 info = p.info
-                lines.append(f"{info['pid']:>6}  {info['name'][:30]:<30}  CPU:{info['cpu_percent']:>5.1f}%  MEM:{info['memory_percent']:>5.1f}%")
-            except:
+                lines.append(
+                    f"{info['pid']:>6}  {info['name'][:28]:<28}  "
+                    f"CPU:{info['cpu_percent']:>5.1f}%  MEM:{info['memory_percent']:>5.1f}%"
+                )
+            except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
                 continue
-        text = "\n".join(lines[:40])
-        if len(lines) > 40:
-            text += f"\n... and {len(lines)-40} more"
-        await ctx.send(f"```\nPID     Name                            CPU%    MEM%\n{text}\n```")
+
+        header = "PID     Name                          CPU%    MEM%\n"
+        text = "\n".join(lines[:35])
+        if len(lines) > 35:
+            text += f"\n... and {len(lines) - 35} more"
+
+        full = f"```\n{header}{text}\n```"
+
+        if len(full) > 1990:
+            import io
+            file = discord.File(
+                io.BytesIO(full.encode("utf-8")),
+                filename="processes.txt"
+            )
+            await ctx.send("Process list is long, sending as file:", file=file)
+        else:
+            await ctx.send(full)
+
     except Exception as e:
         await ctx.send(f"Error: {e}")
 
